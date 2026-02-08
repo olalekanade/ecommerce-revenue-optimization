@@ -1,0 +1,25 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local databases
+*.db
+
+# Raw data (keep local)
+data/raw/
+
+# Large processed artifacts (optional: keep only small outputs)
+data/processed/fact_items_cleaned.csv
+data/processed/fact_orders_cleaned.csv
+
+# Checkpoint artifacts
+*-checkpoint.*

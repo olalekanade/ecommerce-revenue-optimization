@@ -1,0 +1,6 @@
+model,MAE,MAPE,convergence_warning
+Naive,120367.08333333326,0.11969649890946782,False
+Seasonal Naive,440926.22666666674,0.4363467248482263,False
+ETS: add trend,,,True
+ETS: damped trend,,,True
+ETS: no trend,,,True
