@@ -1,12 +1,38 @@
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ecommerce-revenue-optimization.streamlit.app)
+
+**Live app:** [https://ecommerce-revenue-optimization.streamlit.app](https://ecommerce-revenue-optimization.streamlit.app)
+
 # E-commerce Revenue Optimization (Olist)
 
 ## Exploratory Analysis, Customer Segmentation, and Revenue Forecasting
 
 This project analyzes the **Olist Brazilian e-commerce dataset** to understand revenue dynamics, customer behavior, and churn risk.  
-It demonstrates an end-to-end analytics workflow using **SQL, Python, and BI-ready outputs**, with a focus on **business decision-making** and reproducibility.
+It demonstrates an end-to-end analytics workflow using **SQL, Python, and an interactive Streamlit dashboard**, with a focus on **business decision-making** and reproducibility.
 
-Status: Analytics pipeline complete  
-Power BI dashboard: In progress (to be added under /dashboards)
+---
+
+## Dashboard
+
+<table>
+  <tr>
+    <td align="center"><strong>📊 Overview</strong></td>
+    <td align="center"><strong>🎯 RFM Segments</strong></td>
+  </tr>
+  <tr>
+    <td><img src="outputs/screenshot_overview.png" alt="Overview" width="100%"></td>
+    <td><img src="outputs/screenshot_rfm.png" alt="RFM Segments" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>📈 Revenue Forecast</strong></td>
+    <td align="center"><strong>🔍 Customer Explorer</strong></td>
+  </tr>
+  <tr>
+    <td><img src="outputs/screenshot_forecast.png" alt="Revenue Forecast" width="100%"></td>
+    <td><img src="outputs/screenshot_explorer.png" alt="Customer Explorer" width="100%"></td>
+  </tr>
+</table>
+
+Six KPI cards and a combined actual-vs-forecast revenue line chart sit alongside a segment revenue donut — the Overview tab gives an immediate read on platform health. The RFM Segments tab breaks down all six customer segments by revenue, recency, frequency, and monetary value, with an inline revenue-share bar per row. The Revenue Forecast tab shows the dual-axis chart of monthly revenue and order volume, the model comparison table, and a terminal-style insight callout. The Customer Explorer tab provides live filtering, paginated browsing of all 93,358 customers, a CSV download, and an RFM score heatmap of average spend.
 
 ---
 
@@ -33,16 +59,22 @@ Power BI dashboard: In progress (to be added under /dashboards)
 
 ```
 ecommerce-revenue-optimization/
+├── app/
+│   └── streamlit_app.py
 ├── data/
 │   ├── raw/
 │   └── processed/
 ├── notebooks/
+├── outputs/
 ├── scripts/
 ├── sql/
-├── dashboards/
+├── .streamlit/
+│   └── config.toml
 ├── build_db.py
 ├── run_sql_models.py
 ├── check_db.py
+├── requirements.txt
+├── requirements_app.txt
 └── README.md
 ```
 
@@ -124,6 +156,7 @@ Notebook:
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+pip install -r requirements_app.txt
 ```
 
 ### Build Database
@@ -140,20 +173,27 @@ python check_db.py
 2. `02_rfm_segmentation.ipynb`
 3. `03_revenue_forecasting.ipynb`
 
-### Build Power BI Inputs
+### Build Processed Data Inputs
 
 ```
 python scripts/build_monthly_revenue_actual.py
+```
+
+### Run Streamlit App
+
+```
+streamlit run app/streamlit_app.py
 ```
 
 ---
 
 ## Tech Stack
 
-- Python
-- SQL (SQLite)
-- Power BI
-- Git and GitHub
+![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-SQLite-003B57?logo=sqlite&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.35%2B-FF4B4B?logo=streamlit&logoColor=white)
+![Plotly](https://img.shields.io/badge/Plotly-5.x-3D4DB7?logo=plotly&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-2.x-150458?logo=pandas&logoColor=white)
 
 ---
 
@@ -168,6 +208,6 @@ Raw data files and the SQLite database are excluded due to size and licensing co
 
 - Forecasting is intentionally short-term and baseline-focused
 - Segmentation is optimized for business actionability
-- Power BI dashboard will be added in a future update
+- ETS models were evaluated but excluded due to convergence failure on the ~20-month training set
 
 ---
